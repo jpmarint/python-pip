@@ -2,7 +2,7 @@
 import unittest
 
 # Utilities
-from QueuesNodes import Queue
+from QueuesLists import Queue
 
 
 class QueueTestCase(unittest.TestCase):
@@ -53,13 +53,13 @@ class QueueTestCase(unittest.TestCase):
         _queue = Queue([1, 2, 3])
         self.assertFalse(_queue.is_empty())
 
-    def test_add(self):
+    def test_enqueue(self):
         """Test add."""
         _queue = Queue()
-        _queue.add(1)
+        _queue.enqueue(1)
         self.assertEqual(len(_queue), 1)
 
-        _queue.add(2)
+        _queue.enqueue(2)
         self.assertEqual(len(_queue), 2)
 
     def test_peek(self):
@@ -70,14 +70,14 @@ class QueueTestCase(unittest.TestCase):
         _queue = Queue([1, 2, 3])
         self.assertEqual(_queue.peek(), 1)
 
-    def test_pop(self):
-        """Test pop."""
+    def test_dequeue(self):
+        """Test dequeue."""
         _queue = Queue([1, 2, 3])
-        self.assertEqual(_queue.pop(), 1)
-        self.assertEqual(_queue.pop(), 2)
-        self.assertEqual(_queue.pop(), 3)
+        self.assertEqual(_queue.dequeue(), 1)
+        self.assertEqual(_queue.dequeue(), 2)
+        self.assertEqual(_queue.dequeue(), 3)
 
-        self.assertRaises(IndexError, _queue.pop)
+        self.assertRaises(IndexError, _queue.dequeue)
 
     def test_copy(self):
         """Test copy."""
@@ -86,9 +86,8 @@ class QueueTestCase(unittest.TestCase):
         self.assertIsNot(_queue, queue_copy)
         self.assertEqual(len(_queue), len(queue_copy))
 
-        for a, b in zip(_queue.iternodes(), queue_copy.iternodes()):
+        for a, b in zip(_queue, queue_copy):
             self.assertEqual(a, b)
-            self.assertIs(a, b)
 
     def test_depthcopy(self):
         """Test depthcopy."""
@@ -97,9 +96,8 @@ class QueueTestCase(unittest.TestCase):
         self.assertIsNot(_queue, queue_copy)
         self.assertEqual(len(_queue), len(queue_copy))
 
-        for a, b in zip(_queue.iternodes(), queue_copy.iternodes()):
+        for a, b in zip(_queue, queue_copy):
             self.assertEqual(a, b)
-            self.assertIsNot(a, b)
 
     def test_clear(self):
         """Test clear."""

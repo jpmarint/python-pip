@@ -2,50 +2,50 @@
 import unittest
 
 # Utilities
-from QueuesNodes import Queue
+from queue import Queue
 
 
-class QueueTestCase(unittest.TestCase):
+classQueueTestCase(unittest.TestCase):
     """Queue test cases."""
 
-    def test_initialize_empty(self):
+    deftest_initialize_empty(self):
         """Test initialize empty queue."""
         _queue = Queue()
         self.assertEqual(len(_queue), 0)
 
-    def test_intialize_with_list(self):
+    deftest_intialize_with_list(self):
         """Test initialize with list."""
         _queue = Queue([1, 2, 3])
         self.assertEqual(len(_queue), 3)
 
-        for a, b in zip(_queue, [1, 2, 3]):
+        for a, b inzip(_queue, [1, 2, 3]):
             self.assertEqual(a, b)
 
-    def test_initialize_with_tuple(self):
+    deftest_initialize_with_tuple(self):
         """Test initialize with tuple."""
         _queue = Queue((1, 2, 3))
         self.assertEqual(len(_queue), 3)
 
-        for a, b in zip(_queue, [1, 2, 3]):
+        for a, b inzip(_queue, [1, 2, 3]):
             self.assertEqual(a, b)
 
-    def test_initialize_with_set(self):
+    deftest_initialize_with_set(self):
         """Test initialize with set."""
         _queue = Queue({1, 2, 3})
         self.assertEqual(len(_queue), 3)
 
-        for a, b in zip(_queue, [1, 2, 3]):
+        for a, b inzip(_queue, [1, 2, 3]):
             self.assertEqual(a, b)
 
-    def test_initialize_with_iterable(self):
+    deftest_initialize_with_iterable(self):
         """Test initialize with iterable."""
         _queue = Queue(range(1, 4))
         self.assertEqual(len(_queue), 3)
 
-        for a, b in zip(_queue, [1, 2, 3]):
+        for a, b inzip(_queue, [1, 2, 3]):
             self.assertEqual(a, b)
 
-    def test_is_empty(self):
+    deftest_is_empty(self):
         """Test is empty."""
         _queue = Queue()
         self.assertTrue(_queue.is_empty())
@@ -53,7 +53,7 @@ class QueueTestCase(unittest.TestCase):
         _queue = Queue([1, 2, 3])
         self.assertFalse(_queue.is_empty())
 
-    def test_add(self):
+    deftest_add(self):
         """Test add."""
         _queue = Queue()
         _queue.add(1)
@@ -62,7 +62,7 @@ class QueueTestCase(unittest.TestCase):
         _queue.add(2)
         self.assertEqual(len(_queue), 2)
 
-    def test_peek(self):
+    deftest_peek(self):
         """Test peek."""
         _queue = Queue()
         self.assertRaises(IndexError, _queue.peek)
@@ -70,7 +70,7 @@ class QueueTestCase(unittest.TestCase):
         _queue = Queue([1, 2, 3])
         self.assertEqual(_queue.peek(), 1)
 
-    def test_pop(self):
+    deftest_pop(self):
         """Test pop."""
         _queue = Queue([1, 2, 3])
         self.assertEqual(_queue.pop(), 1)
@@ -79,45 +79,45 @@ class QueueTestCase(unittest.TestCase):
 
         self.assertRaises(IndexError, _queue.pop)
 
-    def test_copy(self):
+    deftest_copy(self):
         """Test copy."""
         _queue = Queue([1, 2, 3])
         queue_copy = _queue.copy()
         self.assertIsNot(_queue, queue_copy)
         self.assertEqual(len(_queue), len(queue_copy))
 
-        for a, b in zip(_queue.iternodes(), queue_copy.iternodes()):
+        for a, b inzip(_queue.iternodes(), queue_copy.iternodes()):
             self.assertEqual(a, b)
             self.assertIs(a, b)
 
-    def test_depthcopy(self):
+    deftest_depthcopy(self):
         """Test depthcopy."""
         _queue = Queue([1, 2, 3])
         queue_copy: Queue = _queue.depthcopy()
         self.assertIsNot(_queue, queue_copy)
         self.assertEqual(len(_queue), len(queue_copy))
 
-        for a, b in zip(_queue.iternodes(), queue_copy.iternodes()):
+        for a, b inzip(_queue.iternodes(), queue_copy.iternodes()):
             self.assertEqual(a, b)
             self.assertIsNot(a, b)
 
-    def test_clear(self):
+    deftest_clear(self):
         """Test clear."""
         _queue = Queue([1, 2, 3])
         _queue.clear()
         self.assertEqual(len(_queue), 0)
 
-    def test_contains(self):
+    deftest_contains(self):
         """Test contains."""
         _queue = Queue([1, 2, 3])
-        self.assertTrue(1 in _queue)
-        self.assertFalse(4 in _queue)
+        self.assertTrue(1in _queue)
+        self.assertFalse(4in _queue)
 
-    def test_add_operator(self):
+    deftest_add_operator(self):
         """Test add operator."""
         _queue = Queue([1, 2, 3])
         _queue += [4, 5, 6]
         self.assertEqual(len(_queue), 6)
 
-        for a, b in zip(_queue, [1, 2, 3, 4, 5, 6]):
+        for a, b inzip(_queue, [1, 2, 3, 4, 5, 6]):
             self.assertEqual(a, b)
